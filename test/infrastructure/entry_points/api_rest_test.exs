@@ -1,5 +1,5 @@
 defmodule ApiAuth.Infrastructure.EntryPoint.ApiRestTets do
-  alias ApiAuth.Infrastructure.EntryPoint.ApiRest
+  alias ApiAuth.Infrastructure.EntryPoint.RouterController, as: ApiRest
 
   use ExUnit.Case
   use Plug.Test

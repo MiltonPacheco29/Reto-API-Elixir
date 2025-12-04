@@ -56,6 +56,9 @@ defmodule ApiAuth.MixProject do
       {:poison, "~> 6.0"},
       {:cors_plug, "~> 3.0"},
       {:timex, "~> 3.7"},
+      {:uuid, "~> 1.1"},
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.13", only: :test, runtime: false},
       # Test
       {:mock, "~> 0.3", only: :test},
       {:excoveralls, "~> 0.18", only: :test},

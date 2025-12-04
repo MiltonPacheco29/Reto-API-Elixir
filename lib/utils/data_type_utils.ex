@@ -78,4 +78,8 @@ defmodule ApiAuth.Utils.DataTypeUtils do
 
   def duration_time(start),
     do: (System.monotonic_time() - start) |> monotonic_time_to_milliseconds()
+
+  def normalize_headers(headers) when is_list(headers) do
+    headers |> normalize() |> Enum.into(%{})
+  end
 end
