@@ -7,6 +7,11 @@ defmodule ApiAuth.Application do
   alias ApiAuth.Config.{AppConfig, ConfigHolder}
   alias ApiAuth.Utils.CustomTelemetry
 
+  alias Infrastructure.DrivenAdapters.Inmemory.Shared.Application.{
+    InMemoryUserStore,
+    InMemorySessionStore
+  }
+
   use Application
   require Logger
 
@@ -38,6 +43,9 @@ defmodule ApiAuth.Application do
   end
 
   def env_children(_other_env, _config) do
-    []
+    [
+      InMemoryUserStore,
+      InMemorySessionStore
+    ]
   end
 end

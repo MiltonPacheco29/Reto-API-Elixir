@@ -23,3 +23,8 @@ config :elixir_structure_manager,
 config :opentelemetry,
   span_processor: :batch,
   traces_exporter: {:otel_exporter_stdout, []}
+
+config :api_auth,
+  user_repository: Infrastructure.DrivenAdapters.Inmemory.Shared.Application.InMemoryUserStore,
+  session_repository:
+    Infrastructure.DrivenAdapters.Inmemory.Shared.Application.InMemorySessionStore

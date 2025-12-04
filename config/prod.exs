@@ -25,3 +25,8 @@ config :opentelemetry,
 config :opentelemetry_exporter,
   otlp_protocol: :http_protobuf,
   otlp_endpoint: "http://localhost:4318"
+
+config :api_auth,
+  user_repository: Infrastructure.DrivenAdapters.Inmemory.Shared.Application.InMemoryUserStore,
+  session_repository:
+    Infrastructure.DrivenAdapters.Inmemory.Shared.Application.InMemorySessionStore

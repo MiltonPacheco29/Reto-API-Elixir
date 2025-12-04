@@ -7,6 +7,7 @@ defmodule Infrastructure.EntryPoints.RestController.Signup.Application.SignupHan
   require Logger
 
   alias ApiAuth.Utils.DataTypeUtils
+  alias Domain.UseCases.Signup.SignupUseCase
   alias Infrastructure.EntryPoints.RestController.Signup.Infra.SignupBuild
   alias Infrastructure.EntryPoints.RestController.Shared.Domain.SuccessResponse
   alias Infrastructure.EntryPoints.RestController.Shared.Application.HandleError
@@ -27,9 +28,9 @@ defmodule Infrastructure.EntryPoints.RestController.Signup.Application.SignupHan
 
     with {:ok, true} <- HeadersValidation.validate_headers(headers),
          {:ok, true} <- SignupRequestValidation.validate_request(body),
-         {:ok, dto_query} <- SignupBuild.build_dto_command(body, headers) do
-      IO.inspect(dto_query, label: "DTO COMMAND")
-      SuccessResponse.build_response("OK Sign Up", conn)
+         {:ok, dto_command} <- SignupBuild.build_dto_command(body, headers),
+         {:ok, true} <- SignupUseCase.execute(dto_command) do
+      SuccessResponse.build_response(%{}, conn)
     else
       error -> HandleError.handle_error(error, conn, headers)
     end
