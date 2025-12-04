@@ -30,7 +30,7 @@ defmodule Infrastructure.EntryPoints.RestController.Signup.Application.SignupHan
          {:ok, true} <- SignupRequestValidation.validate_request(body),
          {:ok, dto_command} <- SignupBuild.build_dto_command(body, headers),
          {:ok, true} <- SignupUseCase.execute(dto_command) do
-      SuccessResponse.build_response(%{}, conn)
+      SuccessResponse.build_response(%{status: 201, body: nil}, conn)
     else
       error -> HandleError.handle_error(error, conn, headers)
     end

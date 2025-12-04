@@ -4,9 +4,11 @@ defmodule Infrastructure.DrivenAdapters.Inmemory.Shared.Application.InMemoryUser
   """
 
   use Agent
+  require Logger
 
   alias Domain.Model.Shared.Cqrs.Query
   alias Domain.Model.Shared.Cqrs.Command
+  alias Domain.Model.Shared.Common.Model.Password
 
   # Start the Agent
   def start_link(_opts) do
@@ -33,6 +35,10 @@ defmodule Infrastructure.DrivenAdapters.Inmemory.Shared.Application.InMemoryUser
     Agent.update(__MODULE__, fn state ->
       Map.put(state, email, signup)
     end)
+
+    Logger.info(
+      "User saved: #{inspect(%{signup | password: Password.hidden_password(signup.password)})}"
+    )
 
     {:ok, true}
   end

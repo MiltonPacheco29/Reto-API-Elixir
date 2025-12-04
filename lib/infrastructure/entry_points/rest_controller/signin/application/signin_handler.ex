@@ -30,7 +30,6 @@ defmodule Infrastructure.EntryPoints.RestController.Signin.Application.SigninHan
          {:ok, true} <- SigninRequestValidation.validate_request(body),
          {:ok, dto_query} <- SigninBuild.build_dto_query(body, headers),
          {:ok, response} <- SigninUseCase.execute(dto_query) do
-      IO.inspect(response, label: "Session_id: ")
       SuccessResponse.build_response(response, conn)
     else
       error -> HandleError.handle_error(error, conn, headers)

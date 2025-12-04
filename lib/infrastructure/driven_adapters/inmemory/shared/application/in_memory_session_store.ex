@@ -4,6 +4,7 @@ defmodule Infrastructure.DrivenAdapters.Inmemory.Shared.Application.InMemorySess
   """
 
   use Agent
+  require Logger
 
   alias Domain.Model.Shared.Cqrs.Command
 
@@ -20,6 +21,8 @@ defmodule Infrastructure.DrivenAdapters.Inmemory.Shared.Application.InMemorySess
     Agent.update(__MODULE__, fn state ->
       Map.put(state, session_id, session)
     end)
+
+    Logger.info("Session saved: #{inspect(session)}")
 
     {:ok, session}
   end

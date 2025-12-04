@@ -6,6 +6,12 @@ defmodule Infrastructure.EntryPoints.RestController.Shared.Domain.SuccessRespons
   use Timex
   import Plug.Conn
 
+  def build_response(%{status: status, body: nil}, conn) do
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp(status, "")
+  end
+
   def build_response(%{status: status, body: body}, conn) do
     conn
     |> put_resp_content_type("application/json")

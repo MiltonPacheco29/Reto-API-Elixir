@@ -21,4 +21,8 @@ defmodule Domain.Model.Shared.Common.Model.Password do
         error
     end
   end
+
+  def hidden_password(%__MODULE__{password: password}) do
+    %__MODULE__{password: String.duplicate("*", String.length(password))}
+  end
 end
