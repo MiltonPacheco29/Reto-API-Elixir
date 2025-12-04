@@ -1,4 +1,4 @@
-defmodule Domain.UseCases.Signup.SignupUseCaseTest do
+defmodule Domain.UseCases.Signin.SigninUseCaseTest do
   use ExUnit.Case, async: true
 
   alias Domain.Model.Shared.Cqrs.Query
