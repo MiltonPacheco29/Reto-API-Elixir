@@ -59,6 +59,10 @@ defmodule ApiAuth.MixProject do
       {:uuid, "~> 1.1"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:sobelow, "~> 0.13", only: :test, runtime: false},
+      {:ecs_elixir_logs,
+       sparse: "ecs_elixir_logs",
+       git:
+         "https://grupobancolombia.visualstudio.com/Vicepresidencia%20Servicios%20de%20Tecnolog%C3%ADa/_git/NU0141001_Library_MR"},
       # Test
       {:mock, "~> 0.3", only: :test},
       {:excoveralls, "~> 0.18", only: :test},
